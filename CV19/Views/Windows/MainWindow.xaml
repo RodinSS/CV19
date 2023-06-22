@@ -9,6 +9,12 @@
         mc:Ignorable="d"
         Title="{Binding Title}" 
         Height="450" Width="800">
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="Q" Command="{Binding CloseApplicationCommand}"/>
+    </Window.InputBindings>
+    <Window.Resources>
+        <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand" />
+    </Window.Resources>
     <Window.DataContext>
         <vm:MainWindowVIewModel/>
     </Window.DataContext>
@@ -31,7 +37,8 @@
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
                 <MenuItem Header="Выход 1" Command="{Binding CloseApplicationCommand}"></MenuItem>
-                <MenuItem Header="Выход 2">
+                <MenuItem Header="Выход 2" Command="{StaticResource CloseApplicationCommand}"></MenuItem>
+                <MenuItem Header="Выход 3">
                     <MenuItem.Command>
                         <cmd:CloseApplicationCommand/>
                     </MenuItem.Command>
@@ -63,7 +70,14 @@
                     <Rectangle Grid.Column="0" Grid.Row="0"
                         Fill="Blue" Stroke="Red" StrokeThickness="3" RadiusX="5" RadiusY="7"/>
                     <Ellipse Grid.Column="1" Grid.Row="0"
-                             Fill="Red" Stroke="Blue" StrokeThickness="3"/>
+                             Fill="Red" Stroke="Blue" StrokeThickness="3">
+                        <Ellipse.InputBindings>
+                            <MouseBinding Command="{Binding CloseApplicationCommand}"
+                                          MouseAction="LeftDoubleClick">
+                                
+                            </MouseBinding>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
                     <GridSplitter Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
                                   HorizontalAlignment="Right"
                                   Width="4"/>
